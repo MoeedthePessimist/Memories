@@ -3,7 +3,10 @@ import bodyParser from "body-parser";
 import mongoose from "mongoose";
 import cors from 'cors';
 import dotenv from 'dotenv';
+
+
 import postRoutes from './routes/posts.js';
+import userRoutes from './routes/users.js';
 
 
 const app = express();
@@ -25,6 +28,8 @@ app.use(cors());
 
 // always put this line after using cors to avoid any type of errors
 app.use('/posts', postRoutes); //set the prefix to localhost:5000/posts i.e. all the routes will start with /posts prefix
+app.use('/users', userRoutes); 
+
 
 app.get('/', (req, res) => {
     res.send("HEWWO MEMORIES :3");
