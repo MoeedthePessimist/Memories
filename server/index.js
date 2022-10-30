@@ -3,9 +3,13 @@ import bodyParser from "body-parser";
 import mongoose from "mongoose";
 import cors from "cors";
 import dotenv from "dotenv";
-
+import { fileURLToPath } from "url";
+import path, { dirname } from "path";
 import postRoutes from "./routes/posts.js";
 import userRoutes from "./routes/users.js";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 const app = express();
 dotenv.config();
@@ -17,6 +21,10 @@ app.use(
     extended: true,
   })
 );
+
+const root = path.join(__dirname, "../client/build");
+
+app.use(express.static(root));
 
 // limiting the file size of image to 30mb
 app.use(
@@ -31,7 +39,9 @@ app.use(cors());
 // always put this line after using cors to avoid any type of errors
 app.use("/posts", postRoutes); //set the prefix to localhost:5000/posts i.e. all the routes will start with /posts prefix
 app.use("/users", userRoutes);
-
+app.use("*", (req, res) => {
+  res.sendFile(path.join(root, "index.html"));
+});
 app.get("/", (req, res) => {
   res.send("HEWWO MEMORIES :3");
 });
