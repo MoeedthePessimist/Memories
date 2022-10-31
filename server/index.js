@@ -22,7 +22,7 @@ app.use(
   })
 );
 
-const root = path.join(__dirname, "../client/build");
+const root = path.join(__dirname, "/build");
 
 app.use(express.static(root));
 
