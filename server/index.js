@@ -39,11 +39,11 @@ app.use(cors());
 // always put this line after using cors to avoid any type of errors
 app.use("/posts", postRoutes); //set the prefix to localhost:5000/posts i.e. all the routes will start with /posts prefix
 app.use("/users", userRoutes);
-app.use("*", (req, res) => {
-  res.sendFile(path.join(root, "index.html"));
-});
 app.get("/", (req, res) => {
   res.send("HEWWO MEMORIES :3");
+});
+app.use("*", (req, res) => {
+  res.sendFile(path.join(root, "index.html"));
 });
 
 const CONNECTION_URL = process.env.CONNECTION_URL; //database connection string

@@ -13,12 +13,17 @@ axios.interceptors.request.use((req) => {
 // const url = 'https://memor1es.herokuapp.com/posts';
 // const url = 'http://localhost:5000/posts';
 
-export const fetchPosts = () => axios.get("/posts");
-export const createPost = (newPost) => axios.post("/posts", newPost);
+export const fetchPosts = () => axios.get("http://localhost:5000/posts");
+export const createPost = (newPost) =>
+  axios.post("http://localhost:5000/posts", newPost);
 export const updatePost = (id, updatedPost) =>
   axios.patch(`/posts/${id}`, updatedPost);
-export const deletePost = (id) => axios.delete(`/posts/${id}`);
-export const likePost = (id) => axios.patch(`/posts/${id}/${"likePost"}`);
+export const deletePost = (id) =>
+  axios.delete(`http://localhost:5000/posts/${id}`);
+export const likePost = (id) =>
+  axios.patch(`http://localhost:5000/posts/${id}/${"likePost"}`);
 
-export const signIn = (formData) => axios.post("/users/signin", formData);
-export const signUp = (formData) => axios.post("/users/signup", formData);
+export const signIn = (formData) =>
+  axios.post("http://localhost:5000/users/signin", formData);
+export const signUp = (formData) =>
+  axios.post("http://localhost:5000/users/signup", formData);
