@@ -14,6 +14,8 @@ const __dirname = dirname(__filename);
 const app = express();
 dotenv.config();
 
+app.use(cors());
+
 // limiting the file size of image to 30mb
 app.use(
   bodyParser.json({
@@ -33,8 +35,6 @@ app.use(
     extended: true,
   })
 );
-
-app.use(cors());
 
 // always put this line after using cors to avoid any type of errors
 app.use("/posts", postRoutes); //set the prefix to localhost:5000/posts i.e. all the routes will start with /posts prefix
